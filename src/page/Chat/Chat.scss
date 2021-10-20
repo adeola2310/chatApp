@@ -52,3 +52,9 @@ input::placeholder{
 .form-btn:focus{
   border: 1px solid var(--light);
 }
+
+@media screen and (max-width: 600px){
+  .chat__wrapper{
+    padding: 2rem 1rem;
+  }
+}

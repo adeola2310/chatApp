@@ -1,34 +1,34 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "./Chat.scss";
 import MessageCard from "../../components/MessageCard/MessageCard";
 import {getAllMessages, sendMessage} from "../../services/MessageService";
+import {useToasts} from "react-toast-notifications";
 
 
 const ChatPage = ()=>{
 
     const [messageReceived, setMessageReceived] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     const [messageToSend, setMessageToSend] = useState("");
     const [name] = useState("Adeola");
 
+    const {addToast} = useToasts();
+
     const onGetMsgs = async () => {
-        setLoading(true);
         let response = await getAllMessages();
         setMessageReceived(response);
-        setLoading(false);
         return response;
     };
-    // "no-console": 2,
 
 
     const sendMessageHandler = async (e)=>{
         e.preventDefault();
         let msgBody = {
-            messageToSend,
+            message: messageToSend,
             author: name
         };
        await sendMessage(msgBody);
+        addToast("Message sent successfully", {appearance: "success"});
         onGetMsgs();
         setMessageToSend("");
     };
@@ -37,11 +37,15 @@ const ChatPage = ()=>{
         onGetMsgs();
     }, []);
 
+    const AlwaysScrollToBottom = () => {
+        const elementRef = useRef();
+        useEffect(() => elementRef.current.scrollIntoView());
+        return <div ref={elementRef} />;
+    };
+
 
     return(
         <React.Fragment>
-            {loading ? "Loading..." :
-                (
                     <section className="chat__wrapper">
                         <div className="chat__msg-group">
                             {messageReceived?.map((msg)=>(
@@ -51,10 +55,9 @@ const ChatPage = ()=>{
                                     name={name}
                                 />
                             ))}
+                            <AlwaysScrollToBottom/>
                         </div>
                     </section>
-                )
-            }
 
             <section className="form__wrapper">
                 <form className="form" onSubmit={(e)=>sendMessageHandler(e)}>
@@ -64,6 +67,7 @@ const ChatPage = ()=>{
                         id="messageToSend"
                         name="messageToSend"
                         type="text"
+                        required
                         value={messageToSend}
                         onChange={(e)=>setMessageToSend(e.target.value)}
                         placeholder="Message..."/>
