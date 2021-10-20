@@ -1,11 +1,12 @@
 import React from "react";
+import "./Header.scss";
 
-
-const ChatPage = ()=>{
+const Header = ()=>{
     return(
         <div>
+
         </div>
     );
 };
 
-export default ChatPage;
+export default Header;
