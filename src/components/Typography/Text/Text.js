@@ -1,5 +1,7 @@
 import React from "react";
 import "./Text.scss";
+import PropTypes from "prop-types";
+
 
 
 const Text = (props)=>{
@@ -9,6 +11,11 @@ const Text = (props)=>{
             {children}
         </p>
     );
+};
+
+Text.propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.string
 };
 
 export default Text;
