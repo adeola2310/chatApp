@@ -6,12 +6,20 @@ import {convertTimestamp} from "../../utils/helpers";
 
 
 const MessageCard = (props)=>{
-    const {message} = props;
+
+    const {message, name} = props;
+
     return(
-        <div className="chat-log-left">
-            <div className="chat-message-left">
+        <div className={message.author === name ? "chat-log" : "chat-log-left"}>
+            <div className={
+                message.author === name
+                    ? "chat-message-right"
+                    : "chat-message-left"
+            }>
                 <div className="text-box">
+                    {message.author !== name && (
                         <Text className="author">{message.author}</Text>
+                        )}
                     <Text>{message.message}</Text>
                     <div className="timestamp_div">
                         <Text className="timestamp_p">{convertTimestamp(message.timestamp)}</Text>
@@ -23,7 +31,8 @@ const MessageCard = (props)=>{
 };
 
 MessageCard.propTypes = {
-    message: PropTypes.string
+    message: PropTypes.object,
+    name: PropTypes.string
 };
 
 export default MessageCard;

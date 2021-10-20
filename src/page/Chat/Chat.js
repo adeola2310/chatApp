@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./Chat.scss";
 import MessageCard from "../../components/MessageCard/MessageCard";
-import {getAllMessages} from "../../services/MessageService";
+import {getAllMessages, sendMessage} from "../../services/MessageService";
 
 
 const ChatPage = ()=>{
@@ -9,9 +9,8 @@ const ChatPage = ()=>{
     const [messageReceived, setMessageReceived] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const [messageToSend, msessageToSend] = useState("");
-
-
+    const [messageToSend, setMessageToSend] = useState("");
+    const [name] = useState("Adeola");
 
     const onGetMsgs = async () => {
         setLoading(true);
@@ -20,10 +19,24 @@ const ChatPage = ()=>{
         setLoading(false);
         return response;
     };
+    // "no-console": 2,
+
+
+    const sendMessageHandler = async (e)=>{
+        e.preventDefault();
+        let msgBody = {
+            messageToSend,
+            author: name
+        };
+       await sendMessage(msgBody);
+        onGetMsgs();
+        setMessageToSend("");
+    };
 
     useEffect(() => {
         onGetMsgs();
     }, []);
+
 
     return(
         <React.Fragment>
@@ -35,6 +48,7 @@ const ChatPage = ()=>{
                                 <MessageCard
                                     key={msg?._id}
                                     message={msg}
+                                    name={name}
                                 />
                             ))}
                         </div>
@@ -43,15 +57,18 @@ const ChatPage = ()=>{
             }
 
             <section className="form__wrapper">
-                <form className="form">
+                <form className="form" onSubmit={(e)=>sendMessageHandler(e)}>
                     <input
                         className="input-msg"
                         aria-label="message"
-                        id="message"
-                        name="message"
+                        id="messageToSend"
+                        name="messageToSend"
                         type="text"
+                        value={messageToSend}
+                        onChange={(e)=>setMessageToSend(e.target.value)}
                         placeholder="Message..."/>
                     <button
+                        disabled={!messageToSend}
                         type="submit"
                         className="form-btn">Send</button>
                 </form>
