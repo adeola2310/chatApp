@@ -6,13 +6,17 @@ import {getAllMessages} from "../../services/MessageService";
 
 const ChatPage = ()=>{
 
-    const [msgList, setMsgList] = useState([]);
+    const [messageReceived, setMessageReceived] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const [messageToSend, msessageToSend] = useState("");
+
+
 
     const onGetMsgs = async () => {
         setLoading(true);
         let response = await getAllMessages();
-        setMsgList(response);
+        setMessageReceived(response);
         setLoading(false);
         return response;
     };
@@ -27,7 +31,7 @@ const ChatPage = ()=>{
                 (
                     <section className="chat__wrapper">
                         <div className="chat__msg-group">
-                            {msgList?.map((msg)=>(
+                            {messageReceived?.map((msg)=>(
                                 <MessageCard
                                     key={msg?._id}
                                     message={msg}

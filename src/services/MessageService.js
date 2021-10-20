@@ -23,6 +23,14 @@ export const getAllMessages = async ()=>{
     }
 };
 
+
+/**
+ *
+ *
+ * @param msgBody
+ * @returns {Promise<AxiosResponse<unknown>|*>}
+ * This function calls the post method to send a chat
+ */
 export const sendMessage = async (msgBody)=>{
     let url = `/?token=${token}`;
     try {
