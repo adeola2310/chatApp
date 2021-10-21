@@ -1,4 +1,6 @@
 let baseURL;
+let TOKEN = "SbHCQmijDZDT";
+let NAME= "Adeola";
 
 /***
  *
@@ -12,4 +14,4 @@ if (window.location.href.includes("netlify")) {
     baseURL = "https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0";
 }
 
-export  { baseURL };
+export  { baseURL, TOKEN, NAME };

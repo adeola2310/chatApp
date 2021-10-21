@@ -1,13 +1,13 @@
 import axios from "axios";
+import {TOKEN} from "../utils/base-url";
 
-let token = "SbHCQmijDZDT";
 /**
  *
  * @returns {Promise<unknown>}
  * This function calls the endpoint that returns all messages
  */
 export const getAllMessages = async ()=>{
-    let url = `/?token=${token}`;
+    let url = `/?token=${TOKEN}`;
     try {
         let msgs = await axios.get(url);
         const { success, data} = msgs.data;
@@ -32,7 +32,7 @@ export const getAllMessages = async ()=>{
  * This function calls the post method to send a chat
  */
 export const sendMessage = async (msgBody)=>{
-    let url = `/?token=${token}`;
+    let url = `/?token=${TOKEN}`;
     try {
         let response = await axios.post(url, msgBody);
         let { success } = response;

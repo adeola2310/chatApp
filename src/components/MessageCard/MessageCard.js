@@ -17,9 +17,13 @@ const MessageCard = (props)=>{
                     : "chat-message-left"
             }>
                 <div className="text-box">
-                    {message.author !== name && (
+                    {message.author !== name ? (
                         <Text className="author">{message.author}</Text>
-                        )}
+                        ) :
+                        (
+                            <Text className="author">Me</Text>
+                        )
+                    }
                     <Text>{message.message}</Text>
                     <div className="timestamp_div">
                         <Text className="timestamp_p">{convertTimestamp(message.timestamp)}</Text>

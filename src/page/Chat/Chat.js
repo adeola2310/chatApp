@@ -3,15 +3,15 @@ import "./Chat.scss";
 import MessageCard from "../../components/MessageCard/MessageCard";
 import {getAllMessages, sendMessage} from "../../services/MessageService";
 import Snackbar from "../../components/custom-toast/Snackbar";
+import {NAME} from "../../utils/base-url";
 
 
 const ChatPage = ()=>{
 
     const [messageReceived, setMessageReceived] = useState([]);
 
-    const [messageToSend, setMessageToSend] = useState("");
     const [notify, setNotify] = useState(false);
-    const [name] = useState("Adeola");
+    const [messageToSend, setMessageToSend] = useState("");
 
 
     const onGetMsgs = async () => {
@@ -20,12 +20,11 @@ const ChatPage = ()=>{
         return response;
     };
 
-
     const sendMessageHandler = async (e)=>{
         e.preventDefault();
         let msgBody = {
             message: messageToSend,
-            author: name
+            author: NAME
         };
         await sendMessage(msgBody);
         setNotify(true);
@@ -55,13 +54,14 @@ const ChatPage = ()=>{
                         <MessageCard
                             key={msg?._id}
                             message={msg}
-                            name={name}
+                            name={NAME}
                         />
                     ))}
                     <AlwaysScrollToBottom/>
                 </div>
             </section>
 
+            {/*<ChatForm/>*/}
             <section className="form__wrapper">
                 <form className="form" onSubmit={(e)=>sendMessageHandler(e)}>
                     <input
