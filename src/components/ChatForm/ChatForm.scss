@@ -1,14 +1,14 @@
 
 .form__wrapper{
   background-color: var(--primary-color);
-  height: 15vh;
+  height: 10vh;
 }
 
 .form{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 .input-msg{
   width: 75%;
@@ -40,4 +40,8 @@ input::placeholder{
 }
 .form-btn:focus{
   border: 1px solid var(--light);
+}
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
