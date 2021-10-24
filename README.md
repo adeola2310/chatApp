@@ -1,6 +1,6 @@
 ## **Deployment**
 This project is deployed using continous deployment with Netlify.
-Deployment link is: https://doodlechatt.netlify.app/
+Deployment link is: https://doodlechat.netlify.app/
 
 ## **Getting Started**
 *```git clone "name of repo"```
@@ -34,7 +34,7 @@ Deployment link is: https://doodlechatt.netlify.app/
 * Ensure that I make use of code splitting to reduce load time and allow load chunk only when a neccessary component/page is rendered or needed, Using suspense and lazy.
 
 ## **Features**
-* Funtions for Converting dates in 24-hour format were written without using any library to avoid the app being too heavy
+* Funtions for Converting dates in 24-hour format were written without using any library to avoid the app being too heavy(library like momentjs)
 * Sass was used for styling every components
 * Added a snackbar to give user notification that a message has been delivered or sent
 * User friendly interface-wise for all screen size resolution
