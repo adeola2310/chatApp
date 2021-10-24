@@ -1,4 +1,3 @@
-import "./App.css";
 import "../src/sass/main.scss";
 import Routes from "./routes/Routes";
 import axios from "axios";

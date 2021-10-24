@@ -1,7 +1,7 @@
 .chat__wrapper{
   padding: 2rem 8rem;
   overflow: scroll;
-  height: 80vh;
+  height: 90vh;
 }
 .chat__msg-group {
   display: flex;
@@ -10,8 +10,8 @@
 }
 
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 700px){
   .chat__wrapper{
-    padding: 2rem 1rem;
+    padding: 2rem;
   }
 }

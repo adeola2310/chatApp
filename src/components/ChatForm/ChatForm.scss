@@ -45,3 +45,16 @@ button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
 }
+
+
+@media screen  and (max-width: 700px){
+  .form{
+    padding-top: 0.5rem
+  }
+  .input-msg{
+    padding: 0.8rem;
+  }
+  .form-btn{
+    padding: 0.8rem 1rem;
+  }
+}
